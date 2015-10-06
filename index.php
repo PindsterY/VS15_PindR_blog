@@ -1,3 +1,15 @@
+<?
+// Connect database
+$db = mysqli_connect('127.0.0.1' . 'root', '', 'cleanblog') or die(mysql_error($db))
+mysqli_query($db, "SET NAMES 'utf8'");
+
+
+// Retrieve data from database
+$q = mysqli_query($db, "SELECT * FROM posts");
+while ($row = mysqli_fetch_assoc($q)) {
+    $posts[] = $row;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
