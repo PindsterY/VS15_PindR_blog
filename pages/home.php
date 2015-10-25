@@ -1,21 +1,14 @@
 <?php
 
-$post_id = isset($_GET['id']) ? $_GET['id'] : -1;
 
-// Connect database
-$db = mysqli_connect('127.0.0.1', 'root', '', 'cleanblog') or die(mysqli_error($db));
-mysqli_query($db, "SET NAMES 'utf8'");
-
+//Connect to db
+require 'include/database.php';
 
 // Retrieve data from database
-$q = mysqli_query($db, "
-SELECT
-*,
-DATE_FORMAT(post_created, '%d.%m.%Y %H:%i') post_created
-FROM posts
-NATURAL JOIN authors WHERE post_id=$post_id");
-
-$post = mysqli_fetch_assoc($q);
+$q = mysqli_query($db, "SELECT * FROM posts NATURAL JOIN authors");
+while ($row = mysqli_fetch_assoc($q)) {
+    $posts[] = $row;
+}
 
 ?>
 <!DOCTYPE html>
@@ -29,7 +22,7 @@ $post = mysqli_fetch_assoc($q);
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Clean Blog - Sample Post</title>
+    <title>Clean Blog</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -96,30 +89,50 @@ $post = mysqli_fetch_assoc($q);
 
 <!-- Page Header -->
 <!-- Set your background image for this header on the line below. -->
-<header class="intro-header" style="background-image: url('img/post-bg.jpg')">
+<header class="intro-header" style="background-image: url('img/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <h1 class="post-title"><?php echo $post['post_title'] ?></h1>
-
-                    <h2 class="subheading"><?php echo $post['post_description'] ?></h2>
-                    <span class="meta">Posted by <a
-                            href="#"><?php echo $post['author_name'] ?></a> on <?php echo $post['post_created'] ?></span>
+                <div class="site-heading">
+                    <h1>Clean Blog</h1>
+                    <hr class="small">
+                    <span class="subheading">A Clean Blog Theme by Start Bootstrap</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><?php echo $post['post_text'] ?></div>
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+            <?php foreach ($posts as $post): ?>
+
+                <div class="post-preview">
+
+                    <a href="post.php">
+                        <h2 class="post-title"><?php echo $post['post_title'] ?></h2>
+
+                        <h3 class="post-subtitle"><?php echo $post['post_description'] ?></h3>
+                    </a>
+
+                    <p class="post-meta">Posted by <a
+                            href="#"><?php echo $post['author_name'] ?></a><?php echo $post['post_created'] ?></p>
+                </div>
+                <hr>
+
+            <?php endforeach ?>
+            <!-- Pager -->
+            <ul class="pager">
+                <li class="next">
+                    <a href="#">Older Posts &rarr;</a>
+                </li>
+            </ul>
         </div>
     </div>
-</article>
+</div>
 
 <hr>
 
