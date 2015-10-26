@@ -1,17 +1,3 @@
-<?php
-
-
-//Connect to db
-require 'include/database.php';
-
-// Retrieve data from database
-$q = mysqli_query($db, "SELECT * FROM posts NATURAL JOIN authors");
-while ($row = mysqli_fetch_assoc($q)) {
-    $posts[] = $row;
-}
-
-?>
-
 <!-- Page Header -->
 <!-- Set your background image for this header on the line below. -->
 <header class="intro-header" style="background-image: url('img/home-bg.jpg')">
@@ -37,7 +23,7 @@ while ($row = mysqli_fetch_assoc($q)) {
 
                 <div class="post-preview">
 
-                    <a href="?page=post&id=<?php echo $post['post_id'] ?>">
+                    <a href="?page=post&id=<?php echo $post['post_title'] ?>">
                         <h2 class="post-title"><?php echo $post['post_title'] ?></h2>
 
                         <h3 class="post-subtitle"><?php echo $post['post_description'] ?></h3>

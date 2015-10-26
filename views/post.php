@@ -1,21 +1,3 @@
-<?php
-
-// Get Post ID
-$post_id = isset($_GET['id']) ? $_GET['id'] : -1;
-
-// Retrieve data from database
-$q = mysqli_query($db, "
-SELECT
-*,
-DATE_FORMAT(post_created, '%d.%m.%Y %H:%i') post_created
-FROM posts
-NATURAL JOIN authors WHERE post_id=$post_id");
-
-$post = mysqli_fetch_assoc($q);
-
-?>
-
-
 <!-- Page Header -->
 <!-- Set your background image for this header on the line below. -->
 <header class="intro-header" style="background-image: url('img/post-bg.jpg')">

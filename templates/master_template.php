@@ -74,7 +74,7 @@
     <!-- /.container -->
 </nav>
 
-<?php require "pages/$page.php"; ?>
+<?php if (!file_exists("views/$page.php")) require "views/$page.php"; else require 'views/error.php' ?>
 
 <!-- Footer -->
 <footer>
@@ -107,7 +107,7 @@
                         </a>
                     </li>
                 </ul>
-                <p class="copyright text-muted">Copyright &copy; Your Website 2014</p>
+                <p class="copyright text-muted">Copyright &copy; Your Website <?php echo date('Y') ?></p>
             </div>
         </div>
     </div>
