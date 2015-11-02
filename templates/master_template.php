@@ -74,7 +74,7 @@
     <!-- /.container -->
 </nav>
 
-<?php if (!file_exists("views/$page.php")) require "views/$page.php"; else require 'views/error.php' ?>
+<?php if (file_exists("views/$page.php")) require "views/$page.php"; else require 'views/error.php' ?>
 
 <!-- Footer -->
 <footer>
