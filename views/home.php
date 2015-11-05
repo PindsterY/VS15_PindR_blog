@@ -30,7 +30,8 @@
                     </a>
 
                     <p class="post-meta">Posted by <a
-                            href="#"><?php echo $post['author_name'] ?></a><?php echo $post['post_created'] ?></p>
+                            href="#"><?php echo $post['author_name'] ?> </a>
+                        <?php echo $post['post_created'] ?></p>
                 </div>
                 <hr>
 
