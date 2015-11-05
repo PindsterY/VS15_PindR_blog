@@ -23,7 +23,7 @@
 
                 <div class="post-preview">
 
-                    <a href="?page=post&id=<?php echo $post['post_title'] ?>">
+                    <a href="?page=post&id=<?php echo $post['post_id'] ?>">
                         <h2 class="post-title"><?php echo $post['post_title'] ?></h2>
 
                         <h3 class="post-subtitle"><?php echo $post['post_description'] ?></h3>
